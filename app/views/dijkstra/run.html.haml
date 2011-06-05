@@ -1,4 +1,4 @@
-- form_tag('/dijkstra/run') do
+- form_tag('/dijkstra/run', :style => "width: #{@svg_width - 20}px") do
   = label_tag 'begin', 'Start'
   = select_tag 'begin', nodes_grouped_by_way_for_select(@ways, :selected => @begin)
 
@@ -7,15 +7,19 @@
 
   = submit_tag 'Search'
 
-%div#path
-  - @path_ways.each do |way|
-    %div= way.to_s
+#path{ :style => "width: #{@svg_width}px" }
+  - if @path_ways.empty?
+    %div There is no connection between chosen points.
 
-%div#summary
-  Total distance: 
-  = distance_to_human(@total_distance)
+  - else
+    - @path_ways.each do |way|
+      %div= way.to_s
 
-%div#map{ :style => "width: #{@svg_width}px; height: #{@svg_height}px; border: 1px solid #ccc" }
+  #summary
+    Total distance: 
+    = distance_to_human(@total_distance)
+
+#map{ :style => "width: #{@svg_width}px; height: #{@svg_height}px;" }
 
 = svg_map_for_nodes_script_tag @path_nodes
 = svg_map_integration_with_select_boxes_script_tag

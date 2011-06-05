@@ -8,6 +8,7 @@ function SvgMap(options) {
 	this.nodes = [];
   this.options = options; // minLon, maxLon, minLat, maxLat, nodes, svg (wrapper)
 	
+	// TODO! needs refactoring
 	this.begin_point = this.options.svg.circle(-20, -20, 7, this.settings.circle);
 	this.end_point = this.options.svg.circle(-20, -20, 7, this.settings.circle);
 }
@@ -42,7 +43,7 @@ SvgMap.prototype.drawStart = function() {
 	var cy = this.nodes.first()[1];
 
 	this.options.svg.circle(cx, cy, 17, this.settings.circle);
-	this.options.svg.text(cx - 9, cy + 2, 'Start', this.settings.text);
+	this.options.svg.text(cx - 10, cy + 2, 'Start', this.settings.text);
 }
 
 SvgMap.prototype.drawFinish = function() {
@@ -50,5 +51,5 @@ SvgMap.prototype.drawFinish = function() {
 	var cy = this.nodes.last()[1];
 
 	this.options.svg.circle(cx, cy, 17, this.settings.circle);
-	this.options.svg.text(cx - 11, cy + 2, 'Finish', this.settings.text);
+	this.options.svg.text(cx - 12, cy + 2, 'Finish', this.settings.text);
 }

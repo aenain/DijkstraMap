@@ -1,0 +1,26 @@
+* {
+  font-family: Helvetica, "Lucida Grande";
+  color: #333333;
+  font-size: 12px; }
+
+#map, #path, form {
+  border: 1px solid #cccccc; }
+
+body > * {
+  margin: 10px auto; }
+
+#map * {
+  font-size: 9px;
+  font-weight: bold; }
+
+form {
+  padding: 10px; }
+
+#path div {
+  padding: 5px; }
+  #path div:nth-child(even) {
+    background-color: #f6f6f6; }
+  #path div:nth-child(odd) {
+    background-color: white; }
+#path #summary {
+  font-weight: bold; }
