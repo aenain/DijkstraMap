@@ -15,14 +15,14 @@ osm:
       absolute: <%= Rails.root.join('public', 'images', 'map.svg') %>
       relative: <%= File.join('/', 'images', 'map.svg') %> # relative to public (for html)
 
-    width: 915
-    height: 695
+    width: 1050
+    height: 797
 
   bounds:
     min:
-      latitude: 50.0491
-      longitude: 19.8824
+      latitude: 50.05861
+      longitude: 19.9307
 
     max:
-      latitude: 50.08
-      longitude: 19.9457
+      latitude: 50.06633
+      longitude: 19.94654

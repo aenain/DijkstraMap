@@ -1,13 +1,21 @@
-%div#list
-  - @ways.each do |way|
-    %div= way.name
+- form_tag('/dijkstra/run') do
+  = label_tag 'begin', 'Start'
+  = select_tag 'begin', nodes_grouped_by_way_for_select(@ways, :selected => @begin)
 
-    - way.nodes.each do |node|
-      %div= node.id
+  = label_tag 'end', 'Finish'
+  = select_tag 'end', nodes_grouped_by_way_for_select(@ways, :selected => @end)
+
+  = submit_tag 'Search'
 
 %div#path
   - @path_ways.each do |way|
     %div= way.to_s
 
+%div#summary
+  Total distance: 
+  = distance_to_human(@total_distance)
+
 %div#map{ :style => "width: #{@svg_width}px; height: #{@svg_height}px; border: 1px solid #ccc" }
+
 = svg_map_for_nodes_script_tag @path_nodes
+= svg_map_integration_with_select_boxes_script_tag

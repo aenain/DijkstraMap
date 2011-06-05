@@ -3,10 +3,12 @@ class CreateWays < ActiveRecord::Migration
     create_table :ways do |t|
       t.string :osm_id
       t.string :name
-      t.boolean :oneway
+      t.boolean :oneway, :default => false
 
       t.timestamps
     end
+
+    add_index :ways, :osm_id, :unique => true
   end
 
   def self.down

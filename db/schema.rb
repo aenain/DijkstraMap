@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(:version => 20110605112633) do
     t.datetime "updated_at"
   end
 
+  add_index "nodes", ["osm_id"], :name => "index_nodes_on_osm_id", :unique => true
+
   create_table "nodes_ways", :id => false, :force => true do |t|
-    t.integer "nodes_id"
-    t.integer "ways_id"
+    t.integer "node_id"
+    t.integer "way_id"
   end
 
   create_table "ways", :force => true do |t|
@@ -32,5 +34,7 @@ ActiveRecord::Schema.define(:version => 20110605112633) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "ways", ["osm_id"], :name => "index_ways_on_osm_id", :unique => true
 
 end

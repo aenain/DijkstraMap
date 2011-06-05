@@ -1,8 +1,8 @@
 class CreateNodesWays < ActiveRecord::Migration
   def self.up
     create_table :nodes_ways, :id => false do |t|
-      t.references :nodes
-      t.references :ways
+      t.integer :node_id
+      t.integer :way_id
     end
   end
 

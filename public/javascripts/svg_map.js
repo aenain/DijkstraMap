@@ -7,6 +7,9 @@ function SvgMap(options) {
 
 	this.nodes = [];
   this.options = options; // minLon, maxLon, minLat, maxLat, nodes, svg (wrapper)
+	
+	this.begin_point = this.options.svg.circle(-20, -20, 7, this.settings.circle);
+	this.end_point = this.options.svg.circle(-20, -20, 7, this.settings.circle);
 }
 
 SvgMap.prototype.init = function() {
