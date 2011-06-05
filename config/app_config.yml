@@ -1,0 +1,28 @@
+dijkstra:
+  search:
+    dir: /Users/arturhebda/Desktop
+    file: Dijkstra.debug
+
+  result:
+    path: /Users/arturhebda/Desktop/path.xml
+
+osm:
+  source:
+    path: /Users/arturhebda/Downloads/map.osm
+
+  image:
+    path:
+      absolute: <%= Rails.root.join('public', 'images', 'map.svg') %>
+      relative: <%= File.join('/', 'images', 'map.svg') %> # relative to public (for html)
+
+    width: 915
+    height: 695
+
+  bounds:
+    min:
+      latitude: 50.0491
+      longitude: 19.8824
+
+    max:
+      latitude: 50.08
+      longitude: 19.9457

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  osm_id: MyString
+  name: MyString
+  oneway: false
+
+two:
+  osm_id: MyString
+  name: MyString
+  oneway: false

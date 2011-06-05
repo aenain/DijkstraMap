@@ -1,55 +1,13 @@
-- @route.each do |way|
-  %div= way
+%div#list
+  - @ways.each do |way|
+    %div= way.name
 
-%div#map{ :style => "width: 1259pt; height: 1029pt; border: 1px solid #ccc" }
-:javascript
-  $(function() {
-    function x(longitude, minlon, maxlon, width) {
-      return Math.round((longitude - minlon) * width / (maxlon - minlon));
-    }
+    - way.nodes.each do |node|
+      %div= node.id
 
-    function y(latitude, minlat, maxlat, height) {
-      return Math.round((maxlat - latitude) * height / (maxlat - minlat));
-    }
+%div#path
+  - @path_ways.each do |way|
+    %div= way.to_s
 
-    function draw_start(svg, cx, cy) {
-      svg.circle(cx, cy, 17, {fill: '#5a91d6'});
-      svg.text(cx - 9, cy + 2, 'Start', {fill: 'white', fontSize: 8, fontFamily: 'Lucida Grande'});
-    }
-
-    function draw_finish(svg, cx, cy) {
-      svg.circle(cx, cy, 17, {fill: '#5a91d6'});
-      svg.text(cx - 11, cy + 2, 'Finish', {fill: 'white', fontSize: 8, fontFamily: 'Lucida Grande'});
-    }
-
-    $('#map').svg({loadURL: '/images/map.svg?#{Time.now.to_i}', onLoad: function(svg) {
-      var width = svg._svg.viewBox.baseVal.width;
-      var height = svg._svg.viewBox.baseVal.height;
-      console.log(width + ',' + height);
-
-      var minlat = 50.05623;
-      var minlon = 19.89824;
-      var maxlat = 50.07286;
-      var maxlon = 19.92991;
-
-      var text_settings = {fill: 'white', fontSize: 8, fontFamily: 'Lucida Grande'};
-      var circle_settings = {fill: '#5a91d6'}
-      var line_settings = {fill: 'none', stroke: '#5a91d6', strokeWidth: 3};
-
-      var nodes = #{@nodes};
-
-      for (var i = 0; i < nodes.length; i++) {
-        // latitude - y
-        var coord_y = y(nodes[i][0], minlat, maxlat, height);
-        var coord_x = x(nodes[i][1], minlon, maxlon, width);
-        // longitude - x
-        nodes[i] = [coord_x, coord_y];
-        console.log(nodes[i]);
-      }
-
-      svg.polyline(nodes, line_settings);
-
-      draw_start(svg, nodes.first().first(), nodes.first().last());
-      draw_finish(svg, nodes.last().first(), nodes.last().last());
-    }});
-  });
+%div#map{ :style => "width: #{@svg_width}px; height: #{@svg_height}px; border: 1px solid #ccc" }
+= svg_map_for_nodes_script_tag @path_nodes

@@ -1,0 +1,11 @@
+<shortest_path begin="123" end="128">
+  <way id="1" name="" distance="30">
+    <node id="123" lat="50.061235" lon="19.9123"/>
+    <node id="124" lat="50.061247" lon="19.9234"/>
+  </way>
+  <way id="337" name="Grodzka" distance="1047">
+    <node id="124" lat="50.061247" lon="19.9234"/>
+    <node id="127" lat="50.06245" lon="19.8123"/>
+    <node id="128" lat="50.06246" lon="19.8135"/>
+  </way>
+</shortest_path>

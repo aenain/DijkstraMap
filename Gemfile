@@ -12,6 +12,8 @@ gem 'haml'
 gem 'hpricot'
 gem 'annotate'
 gem 'json'
+gem 'xml-simple'
+gem 'rmagick'
 
 # Use unicorn as the web server
 # gem 'unicorn'

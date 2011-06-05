@@ -1,0 +1,84 @@
+
+<?xml version='1.0' encoding='utf-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN"	"http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd"> 
+<html lang='en' xml:lang='en' xmlns:svg='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/1999/xhtml'> 
+  <head> 
+    <meta content='application/xhtml+xml; charset=utf-8' http-equiv='content-type' /> 
+    <title>DijkstraMap</title> 
+    <link href="/stylesheets/jquery.svg.css?1307138302" media="screen" rel="stylesheet" type="text/css" /> 
+    <script src="/javascripts/prototype.js?1307135333" type="text/javascript"></script> 
+    <script src="/javascripts/effects.js?1307135333" type="text/javascript"></script> 
+    <script src="/javascripts/dragdrop.js?1307135333" type="text/javascript"></script> 
+    <script src="/javascripts/controls.js?1307135333" type="text/javascript"></script> 
+    <script src="/javascripts/rails.js?1307135333" type="text/javascript"></script> 
+    <script src="/javascripts/jquery-1.6.1.js?1307138204" type="text/javascript"></script> 
+    <script src="/javascripts/jquery.svg.js?1307138302" type="text/javascript"></script> 
+    <script src="/javascripts/application.js?1307135333" type="text/javascript"></script> 
+    <meta name="csrf-param" content="authenticity_token"/> 
+    <meta name="csrf-token" content="5vnzQJQkiI6yPleIHRaCTSndx5zGEUCxk47KdZ1+xIM="/> 
+  </head> 
+  <body> 
+    <div>248m Czysta</div> 
+    <div>18m Lack of name...</div> 
+    <div>31m Władysława Reymonta</div> 
+    <div>68m Władysława Reymonta</div> 
+    <div>0.68km Władysława Reymonta</div> 
+    <div>309m Lack of name...</div> 
+    <div>140m Władysława Reymonta</div> 
+    <div>175m Daniela Chodowieckiego</div> 
+    <div id='map' style='width: 915pt; height: 695pt; border: 1px solid #ccc'></div> 
+    <script type='text/javascript'> 
+      //<![CDATA[
+        $(function() {
+          function longitude_to_x(longitude, minlon, maxlon, width) {
+            return Math.round((longitude - minlon) * width / (maxlon - minlon));
+          }
+        
+          function latitude_to_y(latitude, minlat, maxlat, height) {
+            return Math.round((maxlat - latitude) * height / (maxlat - minlat));
+          }
+        
+          function draw_start(svg, cx, cy) {
+            svg.circle(cx, cy, 17, {fill: '#5a91d6'});
+            svg.text(cx - 9, cy + 2, 'Start', {fill: 'white', fontSize: 8, fontFamily: 'Lucida Grande'});
+          }
+        
+          function draw_finish(svg, cx, cy) {
+            svg.circle(cx, cy, 17, {fill: '#5a91d6'});
+            svg.text(cx - 11, cy + 2, 'Finish', {fill: 'white', fontSize: 8, fontFamily: 'Lucida Grande'});
+          }
+        
+          $('#map').svg({loadURL: '/images/map.svg?1307264370', onLoad: function(svg) {
+            var width = svg._svg.viewBox.baseVal.width;
+            var height = svg._svg.viewBox.baseVal.height;
+        
+            var minlat = 50.0491;
+            var minlon = 19.8824;
+            var maxlat = 50.08;
+            var maxlon = 19.9457;
+        
+            var text_settings = {fill: 'white', fontSize: 8, fontFamily: 'Lucida Grande'};
+            var circle_settings = {fill: '#5a91d6'}
+            var line_settings = {fill: 'none', stroke: '#5a91d6', strokeWidth: 3};
+        
+            var nodes = [{"id":266696720,"latitude":50.0639,"longitude":19.9278},{"id":268800770,"latitude":50.0639,"longitude":19.9266},{"id":266696722,"latitude":50.0638,"longitude":19.9243},{"id":262210525,"latitude":50.0638,"longitude":19.924},{"id":262210526,"latitude":50.0639,"longitude":19.9236},{"id":264342689,"latitude":50.064,"longitude":19.9227},{"id":578254793,"latitude":50.0643,"longitude":19.9212},{"id":566168708,"latitude":50.0644,"longitude":19.9208},{"id":566168739,"latitude":50.0646,"longitude":19.9194},{"id":331857693,"latitude":50.0646,"longitude":19.9191},{"id":264342680,"latitude":50.0652,"longitude":19.9166},{"id":262210529,"latitude":50.0658,"longitude":19.9141},{"id":543374320,"latitude":50.0658,"longitude":19.9135},{"id":543374319,"latitude":50.0665,"longitude":19.9093},{"id":543371337,"latitude":50.0666,"longitude":19.9089},{"id":258234441,"latitude":50.0668,"longitude":19.9074},{"id":503254320,"latitude":50.0663,"longitude":19.9072},{"id":280889403,"latitude":50.0656,"longitude":19.907},{"id":542633988,"latitude":50.0654,"longitude":19.9069},{"id":258234439,"latitude":50.0652,"longitude":19.9068}];
+        
+            for (var i = 0; i < nodes.length; i++) {
+              var coord_y = latitude_to_y(nodes[i].latitude, minlat, maxlat, height);
+              var coord_x = longitude_to_x(nodes[i].longitude, minlon, maxlon, width);
+        
+              nodes[i] = [coord_x, coord_y];
+            }
+        
+            svg.polyline(nodes, line_settings);
+        
+            draw_start(svg, nodes.first().first(), nodes.first().last());
+            draw_finish(svg, nodes.last().first(), nodes.last().last());
+
+            document.svg = svg;
+          }});
+        });
+      //]]>
+    </script> 
+  </body> 
+</html>
