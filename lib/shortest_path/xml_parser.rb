@@ -10,22 +10,21 @@ module ShortestPath
     end
 
     def parse_file(file)
-      path = XmlSimple.xml_in(File.read(file), { 'ForceArray' => ['way', 'node'] })
+      reader = OpenStreetMap::Reader.new(:osm_source => AppConfig.dijkstra.result.path)
 
-      unless path["way"].nil?
-        path["way"].each do |way|
-          @ways << ShortestPath::Way.new(:id => way["id"], :name => way["name"], :distance => way["distance"])
+      unless reader.ways.nil?
+        reader.ways.each do |way|
+          @ways << ShortestPath::Way.new(reader.way_params(way, :name => { :attr => 'name' }).merge({ :distance => reader.distance(way) }))
 
-          way["node"].each do |node|
-            new_node = ShortestPath::Node.new(node.symbolize_keys)
+          reader.nodes(way, :tag => 'node').each do |node|
+            new_node = ShortestPath::Node.new(reader.node_params(node))
             @ways.last.nodes << new_node
             @nodes << new_node unless @nodes.include?(new_node)
           end
+
         end
-      end 
-      # config["begin"], config["end"] - id of first and last node
-      # path["way"][n] - nth way
-      # path["way"][n]["node"][m] - mth node of nth way
+      end
+
     end
   end
 end

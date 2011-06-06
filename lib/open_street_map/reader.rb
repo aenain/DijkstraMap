@@ -34,9 +34,11 @@ module OpenStreetMap
       @ways ||= map["way"] rescue []
     end
 
-    def nodes way = nil
+    def nodes way = nil, options = {}
       if way.nil?
         @nodes ||= map["node"] rescue []
+      elsif options[:tag].present?
+        way[options[:tag]]
       else
         way["nd"].collect { |node| node["ref"] } rescue []
       end
@@ -46,14 +48,15 @@ module OpenStreetMap
       { :osm_id => node["id"], :latitude => node["lat"].to_f, :longitude => node["lon"].to_f } rescue {}
     end
 
-    def way_params way
-      { :osm_id => way["id"], :name => name(way) }
+    def way_params way, options = {}
+      { :osm_id => way["id"], :name => name(way, options[:name] || {}) }
     end
 
-    def name element
-      return "" if element["tag"].nil?
+    def name element, options = {}
+      attribute = options[:attr]
+      return element[attribute] unless attribute.nil?
 
-      tag = element["tag"].delete_if { |tag| tag["k"] != "name" }.first
+      tag = (element["tag"] || []).delete_if { |tag| tag["k"] != "name" }.first
       name = tag["v"] rescue ""
     end
 

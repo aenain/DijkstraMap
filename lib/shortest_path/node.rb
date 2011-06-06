@@ -3,11 +3,11 @@ module ShortestPath
     attr_accessor :id, :latitude, :longitude
 
     def initialize(options = {})
-      raise ArgumentError unless options[:id] && options[:lat] && options[:lon]
+      raise ArgumentError unless options[:osm_id] && options[:latitude] && options[:longitude]
 
-      @id = options[:id].to_i
-      @latitude = options[:lat].to_f
-      @longitude = options[:lon].to_f
+      @id = options[:osm_id].to_i
+      @latitude = options[:latitude].to_f
+      @longitude = options[:longitude].to_f
     end
 
     def ==(other)

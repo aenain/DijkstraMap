@@ -6,9 +6,10 @@ module ShortestPath
     attr_accessor :id, :name, :distance, :nodes
 
     def initialize(options = {})
-      raise ArgumentError unless options[:id]
+      Rails.logger.info options
+      raise ArgumentError unless options[:osm_id]
 
-      @id = options[:id].to_i
+      @id = options[:osm_id].to_i
       @name = options[:name] || "..."
       @distance = options[:distance].to_i rescue 0
       @nodes = []
