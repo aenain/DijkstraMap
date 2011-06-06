@@ -1,0 +1,10 @@
+- if ways.empty?
+  %div There is no connection between chosen points.
+
+- else
+  - ways.each do |way|
+    %div= way.to_s
+
+  #summary
+    Total distance: 
+    = distance_to_human(total_distance)

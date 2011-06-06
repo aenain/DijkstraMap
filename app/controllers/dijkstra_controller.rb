@@ -1,27 +1,26 @@
 require 'dijkstra'
 
 class DijkstraController < ApplicationController
-  before_filter :check_nodes_for_dijkstra, :only => :run
   before_filter :set_svg_size, :only => :run
   before_filter :set_ways, :only => :run
 
   def run
-    dijkstra = Dijkstra.new(params[:begin], params[:end])
-    dijkstra.run if request.post? && @valid_params
+    dijkstra = Dijkstra.new(params[:start], params[:finish])
+    dijkstra.run if request.post? && params_valid?
 
-    @path_ways = dijkstra.ways
-    @path_nodes = dijkstra.nodes
+    @ways_on_path = dijkstra.ways
+    @nodes_on_path = dijkstra.nodes
 
-    @total_distance = @path_ways.sum(0) { |way| way.distance }
+    @total_distance = @ways_on_path.sum(0) { |way| way.distance }
 
-    @begin = params[:begin]
-    @end = params[:end]
+    @start = params[:start]
+    @finish = params[:finish]
   end
 
   private
 
-  def check_nodes_for_dijkstra
-    @valid_params = params[:begin] && params[:end] && params[:begin] != params[:end]
+  def params_valid?
+    @params_valid ||= params[:start] && params[:finish] && params[:start] != params[:finish]
   end
 
   def set_ways
@@ -29,7 +28,7 @@ class DijkstraController < ApplicationController
   end
 
   def set_svg_size
-    @svg_width = AppConfig.osm.image.width
-    @svg_height = AppConfig.osm.image.height
+    @svg_width = AppConfig.osm.image.dimensions.width
+    @svg_height = AppConfig.osm.image.dimensions.height
   end
 end

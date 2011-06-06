@@ -9,7 +9,7 @@ class Dijkstra
   end
 
   def run
-    @result = %x{ cd #{AppConfig.dijkstra.search.dir}; ./#{AppConfig.dijkstra.search.file} #{@begin_id} #{@end_id} #{AppConfig.osm.source.path} --output=#{AppConfig.dijkstra.result.path} }
+    @result = %x{ cd #{AppConfig.dijkstra.search.dir}; ./#{AppConfig.dijkstra.search.file} #{@begin_id} #{@end_id} #{AppConfig.osm.source.path} -o #{AppConfig.dijkstra.result.path} }
     Rails.logger.info @result
 
     parser = ShortestPath::XmlParser.new

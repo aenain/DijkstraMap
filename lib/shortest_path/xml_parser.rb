@@ -9,8 +9,8 @@ module ShortestPath
       @nodes = []
     end
 
-    def parse_file(filepath)
-      path = XmlSimple.xml_in(File.read(filepath), { 'ForceArray' => ['way', 'node'] })
+    def parse_file(file)
+      path = XmlSimple.xml_in(File.read(file), { 'ForceArray' => ['way', 'node'] })
 
       unless path["way"].nil?
         path["way"].each do |way|

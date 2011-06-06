@@ -3,29 +3,34 @@
 	color: #333
 	font-size: 12px
 	
-#map, #path, form
-	border: 1px solid #ccc
+#content
+	margin: 0 auto
+
 	
-body > *
-	margin: 10px auto
+	#map, #path, form
+		border: 1px solid #ccc
+		margin: 0 0 10px 0
 
-#map
-	*
-		font-size: 9px
-		font-weight: bold
+	#path, form
+		margin-right: -2px
 
-form
-	padding: 10px
+	#map
+		*
+			font-size: 9px
+			font-weight: bold
 
-#path
-	div
-		padding: 5px
+	form
+		padding: 10px
 
-		&:nth-child(even)
-			background-color: #f6f6f6
+	#path
+		div
+			padding: 5px
 
-		&:nth-child(odd)
-			background-color: #fff
+			&:nth-child(even)
+				background-color: #f6f6f6
 
-	#summary
-		font-weight: bold
+			&:nth-child(odd)
+				background-color: #fff
+
+		#summary
+			font-weight: bold

@@ -30,26 +30,17 @@ module DijkstraHelper
     script = <<-JS
       $(function() {
         function coordinates_from_select($select) {
-          var geographical = $select.find("option:selected").text().split(' ');
-
-          for (var i = 0; i < geographical.length; i++)
-            geographical[i] = parseFloat(geographical[i].slice(0, -1));
-
-          return document.svg_map.coordinates({ latitude: geographical[0], longitude: geographical[1] });
+          return document.svg_map.coordinates_from_geographical($select.find("option:selected").text());
         }
 
-        function change_svg_element(element, changes) {
-          document.svg_map.options.svg.change(element, changes);
-        }
-
-        $("#begin").change(function() {
+        $("#start").change(function() {
           var coordinates = coordinates_from_select($(this));
-          change_svg_element(document.svg_map.begin_point, { cx: coordinates[0], cy: coordinates[1] });
+          document.svg_map.change(document.svg_map.beginPoint, { cx: coordinates[0], cy: coordinates[1] });
         });
 
-        $("#end").change(function() {
+        $("#finish").change(function() {
           var coordinates = coordinates_from_select($(this));
-          change_svg_element(document.svg_map.end_point, { cx: coordinates[0], cy: coordinates[1] });
+          document.svg_map.change(document.svg_map.endPoint, { cx: coordinates[0], cy: coordinates[1] });
         });
       });
     JS

@@ -3,24 +3,23 @@
   color: #333333;
   font-size: 12px; }
 
-#map, #path, form {
-  border: 1px solid #cccccc; }
-
-body > * {
-  margin: 10px auto; }
-
-#map * {
-  font-size: 9px;
-  font-weight: bold; }
-
-form {
-  padding: 10px; }
-
-#path div {
-  padding: 5px; }
-  #path div:nth-child(even) {
-    background-color: #f6f6f6; }
-  #path div:nth-child(odd) {
-    background-color: white; }
-#path #summary {
-  font-weight: bold; }
+#content {
+  margin: 0 auto; }
+  #content #map, #content #path, #content form {
+    border: 1px solid #cccccc;
+    margin: 0 0 10px 0; }
+  #content #path, #content form {
+    margin-right: -2px; }
+  #content #map * {
+    font-size: 9px;
+    font-weight: bold; }
+  #content form {
+    padding: 10px; }
+  #content #path div {
+    padding: 5px; }
+    #content #path div:nth-child(even) {
+      background-color: #f6f6f6; }
+    #content #path div:nth-child(odd) {
+      background-color: white; }
+  #content #path #summary {
+    font-weight: bold; }

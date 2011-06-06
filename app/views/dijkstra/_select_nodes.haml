@@ -1,0 +1,8 @@
+- form_tag dijkstra_run_path do
+  = label_tag 'start'
+  = select_tag 'start', nodes_grouped_by_way_for_select(ways, :selected => start)
+
+  = label_tag 'finish'
+  = select_tag 'finish', nodes_grouped_by_way_for_select(ways, :selected => finish)
+
+  = submit_tag 'Search'
