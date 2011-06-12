@@ -1,28 +1,28 @@
 module OpenStreetMap
-  class SqlUpdater < Updater
+  class DatabaseUpdater < Updater
     def update
-      prepare_database
+      clear_nodes_and_ways
       create_nodes
       create_ways_with_connections
     end
 
     private
 
-    def prepare_database
+    def clear_nodes_and_ways
       clear_ways
       clear_nodes
     end
 
     def create_nodes
-      nodes.each do |node|
-        Node.create node_params(node)
+      reader.nodes.each do |node|
+        Node.create reader.node_params(node)
       end
     end
 
     def create_ways_with_connections
-      ways.each do |way|
-        created_way = Way.create way_params(way)
-        bind_way_with_nodes created_way, nodes(way)
+      reader.ways.each do |way|
+        created_way = Way.create reader.way_params(way)
+        bind_way_with_nodes created_way, reader.nodes(way)
       end
     end
 

@@ -17,8 +17,8 @@ osm:
       height: 858
   bounds: 
     min: 
-      latitude: 50.05831
-      longitude: 19.9307
+      latitude: 50.05655
+      longitude: 19.90017
     max: 
-      latitude: 50.06663
-      longitude: 19.94654
+      latitude: 50.07319
+      longitude: 19.93184
