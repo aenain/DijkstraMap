@@ -20,6 +20,9 @@ DijkstraMap
     c. Create symbolic link to map.svg:
       ln -s path_to_original_file map.svg
       You can also move original map.svg to this directory, but symbolic link is more convenient, especially when you would like to change your map more than once :P
+  In config/app_config.yml.sample you can find my configuration of application. Please copy it to config/app_config.yml:
+    cp config/app_config.yml.sample config/app_config.yml
+  and customize it to your needs.
 
 2. Configuration
   All configuration settings are in config/app_config.yml file.
