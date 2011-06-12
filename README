@@ -23,9 +23,11 @@ DijkstraMap
   In config/app_config.yml.sample you can find my configuration of application. Please copy it to config/app_config.yml:
     cp config/app_config.yml.sample config/app_config.yml
   and customize it to your needs.
+  Do the same thing with config/database.yml.sample.
 
 2. Configuration
   All configuration settings are in config/app_config.yml file.
+  Set up connection to your database in config/database.yml file.
 
   After installation you have to set up absolute path to directory where Dijkstra binary file can be found (dijkstra -> search -> dir) and then name of this file (dijkstra -> search -> file)
 
