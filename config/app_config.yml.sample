@@ -22,3 +22,5 @@ osm:
     max: 
       latitude: 50.07319
       longitude: 19.93184
+wkhtmltopdf:
+  path: "/Users/arturhebda/Downloads/wkhtmltopdf-0.9.9-OS-X.i368"

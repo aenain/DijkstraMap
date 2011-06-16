@@ -34,8 +34,10 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    excelsior (0.1.0)
     haml (3.0.21)
     hpricot (0.8.4)
+    htmlentities (4.3.0)
     i18n (0.5.0)
     json (1.5.1)
     mail (2.2.19)
@@ -44,7 +46,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    money (3.7.1)
+      i18n (~> 0.4)
     mysql2 (0.2.1)
+    pdfkit (0.5.0)
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -77,10 +82,14 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  excelsior
   haml
   hpricot
+  htmlentities
   json
+  money
   mysql2 (= 0.2.1)
+  pdfkit
   rails (= 3.0.7)
   rmagick
   xml-simple

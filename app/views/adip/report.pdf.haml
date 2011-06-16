@@ -1,0 +1,154 @@
+!!! Strict
+%html(xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink")
+  %head
+    %meta{'http-equiv' => 'content-type', :content => 'application/xhtml+xml; charset=utf-8'}
+    %title Projekt z ADiP-u
+
+    :css
+      * {
+        font-family: Helvetica, "Lucida Grande";
+        color: #333333;
+        font-size: 12px; }
+
+      #content {
+        margin: 0 auto; }
+        #content #map, #content #path, #content form {
+          border: 1px solid #cccccc;
+          margin: 0 0 10px 0; }
+        #content #path, #content form {
+          margin-right: -2px; }
+        #content #map * {
+          font-size: 9px;
+          font-weight: bold; }
+        #content form {
+          padding: 10px; }
+        #content #path div {
+          padding: 5px; }
+          #content #path div:nth-child(even) {
+            background-color: #f6f6f6; }
+          #content #path div:nth-child(odd) {
+            background-color: white; }
+        #content #path #summary {
+          font-weight: bold; }
+
+      body, html {
+        margin: 5px;
+        padding: 0; }
+
+      * {
+        font-family: Helvetica, Lucida Grande, Verdana, Arial, sans-serif; }
+
+      p {
+        margin: 5px 0;
+        padding: 0; }
+
+      sub, sup {
+        margin: 0;
+        padding: 0;
+        font-size: 10px; }
+
+      .header {
+        margin: 0;
+        padding-bottom: 20px;
+        font-size: 14px; }
+        .header * {
+          font-size: inherit; }
+
+      .solution {
+        margin: 10px 0; }
+
+      .category {
+        font-size: 14px;
+        font-weight: bold; }
+
+      table {
+        margin-top: 10px;
+        border: 1px solid #cccccc;
+        border-collapse: collapse; }
+        table thead {
+          border-bottom: 1px solid #cccccc; }
+        table tr:nth-child(even) {
+          background-color: #f8f8f8; }
+        table td, table th {
+          padding: 3px;
+          text-align: right; }
+          table td.set, table th.set {
+            width: 150px; }
+        table.data td, table.data th {
+          padding: 3px 8px; }
+
+      .authors {
+        margin-top: 30px; }
+
+  %body
+    .header
+      %span.category Temat:
+      %span.description Pobrać losowo ceny metra kwadratowego trzydziestu mieszkań wystawionych w Krakowie na sprzedaż w dowolnym serwisie internetowym. Wybrane mieszkania muszą znajdować się w możliwie różnych lokalizacjach. Podać źródło informacji. Na poziomie istotności 0,05 zweryfikować hipotezę, że średnia cena metra kwadratowego w Krakowie wynosi 7600 zł.
+
+    .solution
+      %span.category Rozwiązanie:
+      %p.description Wybraliśmy model II weryfikacji hipotez dotyczących wartości średniej, zakładając tym samym, że cena za metr kwadratowy ma rozkład normalny o nieznanych parametrach.
+      %p.description Dane pochodzą z serwisu: www.krakow.gumtree.pl i dotyczą mieszkań deweloperskich.
+
+      %table.data
+        %thead
+          %tr
+            %th L.p.
+            %th Lokalizacja
+            %th Cena
+            %th Powierzchnia
+            %th
+              Cena za m
+              %sup 2
+
+        %tbody
+        - @apartments.each do |apartment|
+          %tr
+            %td= apartment.id
+            %td= apartment.location
+            %td= number apartment.cost
+            %td= number apartment.surface
+            %td= number apartment.cost_per_meter_square
+
+      %table
+        %thead
+          %tr
+            %th
+              Wartość oczekiwana
+            %th
+              Liczność próby
+            %th
+              Wartość średnia
+            %th
+              Odchylenie standardowe
+            %th
+              Wartość znormalizowana
+            %th
+              Poziom ufności
+            %th.set
+              Przedział krytyczny
+
+        %tbody
+          %tr
+            %td= number @statistics.predicted
+            %td= @statistics.n
+            %td= number @statistics.average
+            %td= number @statistics.deviation
+            %td= number @statistics.normalized
+            %td= @statistics.trust
+            %td.set= HTMLEntities.new.decode(@statistics.critical_set_for_equal_hypothesis)
+
+    .result
+      %span.category Wnioski:
+
+      - if @statistics.student_distribution.nil?
+        Nieznana wartość rozkładu Studenta.
+      - else
+        - if @statistics.equal_hypothesis_is_good?
+          Wartość znormalizowana należy do przedziału krytycznego. Hipotezę należy odrzucić.
+        - else
+          Wartość znormalizowana nie należy do przedziału krytycznego. Brak podstaw do odrzucenia hipotezy.
+
+    .authors
+      %span.category Przygotowali:
+      %span.description Hebda Artur, Michalski Łukasz, Siedlarz Marcin

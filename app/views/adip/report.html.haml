@@ -1,0 +1,71 @@
+.header
+  %span.category Temat:
+  %span.description Pobrać losowo ceny metra kwadratowego trzydziestu mieszkań wystawionych w Krakowie na sprzedaż w dowolnym serwisie internetowym. Wybrane mieszkania muszą znajdować się w możliwie różnych lokalizacjach. Podać źródło informacji. Na poziomie istotności 0,05 zweryfikować hipotezę, że średnia cena metra kwadratowego w Krakowie wynosi 7600 zł.
+
+.solution
+  %span.category Rozwiązanie:
+  %p.description Wybraliśmy model II weryfikacji hipotez dotyczących wartości średniej, zakładając tym samym, że cena za metr kwadratowy ma rozkład normalny o nieznanych parametrach.
+  %p.description Dane pochodzą z serwisu: www.krakow.gumtree.pl i dotyczą mieszkań deweloperskich.
+
+  %table.data
+    %thead
+      %tr
+        %th L.p.
+        %th Lokalizacja
+        %th Cena
+        %th Powierzchnia
+        %th
+          Cena za m
+          %sup 2
+
+    %tbody
+      - @apartments.each do |apartment|
+        %tr
+          %td= apartment.id
+          %td= apartment.location
+          %td= number apartment.cost
+          %td= number apartment.surface
+          %td= number apartment.cost_per_meter_square
+
+  %table
+    %thead
+      %tr
+        %th
+          Wartość oczekiwana
+        %th
+          Liczność próby
+        %th
+          Wartość średnia
+        %th
+          Odchylenie standardowe
+        %th
+          Wartość znormalizowana
+        %th
+          Poziom ufności
+        %th.set
+          Przedział krytyczny
+
+    %tbody
+      %tr
+        %td= number @statistics.predicted
+        %td= @statistics.n
+        %td= number @statistics.average
+        %td= number @statistics.deviation
+        %td= number @statistics.normalized
+        %td= @statistics.trust
+        %td.set= HTMLEntities.new.decode(@statistics.critical_set_for_equal_hypothesis)
+
+.result
+  %span.category Wnioski:
+
+  - if @statistics.student_distribution.nil?
+    Nieznana wartość rozkładu Studenta.
+  - else
+    - if @statistics.equal_hypothesis_is_good?
+      Wartość znormalizowana należy do przedziału krytycznego. Hipotezę należy odrzucić.
+    - else
+      Wartość znormalizowana nie należy do przedziału krytycznego. Brak podstaw do odrzucenia hipotezy.
+
+.authors
+  %span.category Przygotowali:
+  %span.description Hebda Artur, Michalski Łukasz, Siedlarz Marcin

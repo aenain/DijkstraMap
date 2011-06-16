@@ -14,6 +14,10 @@ gem 'annotate'
 gem 'json'
 gem 'xml-simple'
 gem 'rmagick'
+gem 'pdfkit'
+gem 'money'
+gem 'excelsior'
+gem 'htmlentities'
 
 # Use unicorn as the web server
 # gem 'unicorn'
