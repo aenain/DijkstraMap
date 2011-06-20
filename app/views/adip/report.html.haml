@@ -40,9 +40,9 @@
         %tr
           %td{ :style => "padding: 10px" }
             .math= "\\mu_o = #{@statistics.predicted},"
-          %td{ :style => "padding: 10px" }
+          %td{ :style => "padding: 10px 8px 10px 10px" }
             .math= "n = #{@statistics.n},"
-          %td{ :style => "padding: 10px" }
+          %td{ :style => "padding: 8px 10px 2px 0; margin-top: 10px;" }
             .math= "\\alpha = #{@statistics.trust}"
         %tr
           %td{ :colspan => 3 }
@@ -52,7 +52,7 @@
             .math{ :style => 'text-align: left' }= "\\overline{x} = #{number @statistics.average}"
         %tr
           %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' } s = \sqrt{ {1\over\displaystyle n}{\sum_{i=1}^n (\overline{x} - x_i)^2} }
+            .math{ :style => 'text-align: left' } s^2 = {1\over\displaystyle n}{\sum_{i=1}^n (\overline{x} - x_i)^2}
         %tr
           %td{ :colspan => 3 }
             .math{ :style => 'text-align: left' }= "s = #{number @statistics.deviation}"
