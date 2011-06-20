@@ -28,11 +28,15 @@ class Statistics
     @normalized ||= (average - predicted) * Math.sqrt(n) / deviation
   end
 
-  def critical_set_for_equal_hypothesis
+  def critical_set_for_equal_hypothesis options = {}
     t = student_distribution :trust => trust, :length => n
 
     unless t.nil?
-      "(-&infin;, #{-t}> &cup; <#{t}, +&infin;)"
+      if options[:use_js_math]
+        "(-\\infty, #{-t}] \\cup [#{t}, +\\infty)"
+      else
+        "(-&infin;, #{-t}> &cup; <#{t}, +&infin;)"
+      end
     else
       "Don't know how to build critical set."
     end

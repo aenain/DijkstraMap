@@ -22,11 +22,15 @@ sub, sup {
     font-size: inherit; }
 
 .solution {
-  margin: 10px 0; }
+  margin: 10px 0;
+  overflow: hidden; }
 
 .category {
   font-size: 14px;
   font-weight: bold; }
+
+.result {
+  margin-top: 10px; }
 
 table {
   margin-top: 10px;
@@ -34,15 +38,44 @@ table {
   border-collapse: collapse; }
   table thead {
     border-bottom: 1px solid #cccccc; }
+  table tbody {
+    border-bottom: 1px solid #cccccc; }
   table tr:nth-child(even) {
     background-color: #f8f8f8; }
   table td, table th {
     padding: 3px;
-    text-align: right; }
+    text-align: center;
+    border-right: 1px solid #cccccc; }
     table td.set, table th.set {
       width: 150px; }
-  table.data td, table.data th {
-    padding: 3px 8px; }
+  table.data {
+    float: left; }
+    table.data td, table.data th {
+      padding: 3px;
+      border: 0;
+      text-align: right; }
+  table.short tr:nth-child(even), table.no-zebra tr:nth-child(even) {
+    background-color: inherit; }
+  table.short tr td, table.no-zebra tr td {
+    border-bottom: 1px solid #cccccc; }
+  table.no-border {
+    border: 0; }
+    table.no-border tbody, table.no-border thead {
+      border: 0; }
+      table.no-border tbody tr, table.no-border thead tr {
+        border: 0; }
+        table.no-border tbody tr th, table.no-border tbody tr td, table.no-border thead tr th, table.no-border thead tr td {
+          border: 0; }
+
+.sidebar {
+  display: inline-block;
+  padding: 10px 0 10px 30px; }
+
+.clear {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  clear: both; }
 
 .authors {
   margin-top: 30px; }
