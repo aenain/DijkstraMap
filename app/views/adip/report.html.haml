@@ -3,85 +3,26 @@
 
 .header
   %span.category Temat:
-  %span.description Pobrać losowo ceny metra kwadratowego trzydziestu mieszkań wystawionych w Krakowie na sprzedaż w dowolnym serwisie internetowym. Wybrane mieszkania muszą znajdować się w możliwie różnych lokalizacjach. Podać źródło informacji. Na poziomie istotności 0,05 zweryfikować hipotezę, że średnia cena metra kwadratowego w Krakowie wynosi 7600 zł.
+  %span.description Jak obliczyć pojemność kondensatora złożonego z dwóch koncentrycznych rur długości l? Promień wewnętrznej rury: a, zewnętrznej: b.
 
-.solution
+.solution#math-parent
   %span.category Rozwiązanie:
-  %p.description Wybraliśmy model II weryfikacji hipotez dotyczących wartości średniej, zakładając tym samym, że cena za metr kwadratowy ma rozkład normalny o nieznanych parametrach.
-  %p.description
-    .math{ :style => 'text-align: left' } X \sim N(\mu, \sigma)
-    .math{ :style => 'text-align: left' } H: \mu = \mu_o
-    .math{ :style => 'text-align: left' } K: \mu \not= \mu_o
-  %p.description Dane pochodzą z serwisu: www.krakow.gumtree.pl i dotyczą mieszkań deweloperskich.
 
-  %table.data
-    %thead
-      %tr
-        %th L.p.
-        %th Lokalizacja
-        %th Cena
-        %th Powierzchnia
-        %th
-          Cena za m
-          %sup 2
+  .math-description Z prawa Gaussa:
+  .math{ :style => 'text-align: left;' } r \in [a,b) \quad\Rightarrow\quad 2\pi rlE = {Q \over\displaystyle \epsilon_o} \quad\Leftrightarrow\quad E = {Q \over\displaystyle{ 2\pi rl \epsilon_o }}
 
-    %tbody
-      - @apartments.each do |apartment|
-        %tr
-          %td= apartment.id
-          %td= apartment.location
-          %td= number apartment.cost
-          %td= number apartment.surface
-          %td= number apartment.cost_per_meter_square
+  .math-description Z definicji potencjału i napięcia:
+  .math{ :style => 'text-align: left;' } W = q(V_b - V_a) \quad\wedge\quad U = V_b - V_a \quad\Rightarrow\quad W = qU
 
-  .sidebar
-    %table.no-border.no-zebra
-      %tbody
-        %tr
-          %td{ :style => "padding: 10px" }
-            .math= "\\mu_o = #{@statistics.predicted},"
-          %td{ :style => "padding: 10px 8px 10px 10px" }
-            .math= "n = #{@statistics.n},"
-          %td{ :style => "padding: 8px 10px 2px 0; margin-top: 10px;" }
-            .math= "\\alpha = #{@statistics.trust}"
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' } \overline{x} = {1\over\displaystyle n} \sum_{i=1}^n x_i
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' }= "\\overline{x} = #{number @statistics.average}"
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' } s^2 = {1\over\displaystyle n}{\sum_{i=1}^n (\overline{x} - x_i)^2}
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' }= "s = #{number @statistics.deviation}"
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' } T = {\overline{x}-\mu_o\over\displaystyle s}\sqrt{n}
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' }= "T = #{number @statistics.normalized}"
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' } W = (-\infty, -t(1 - {\alpha\over\displaystyle 2}, n-1)] \cup [t(1 - {\alpha\over\displaystyle 2}, n-1), +\infty)
-        %tr
-          %td{ :colspan => 3 }
-            .math{ :style => 'text-align: left' }= "W = #{@statistics.critical_set_for_equal_hypothesis :use_js_math => true}"
+  .math-description Z definicji pracy w polu elektrycznym:
+  .math{ :style => 'text-align: left;' } W = \int^b_a{Eq}dr = q\int^b_a{E}dr = q\int^b_a{Q \over\displaystyle{ 2\pi rl \epsilon_o }}dr = {qQ \over\displaystyle{ 2\pi l \epsilon_o }} \int^b_a{dr \over\displaystyle r} = {qQ \over\displaystyle{ 2\pi l \epsilon_o }} ln({b \over\displaystyle a})
 
-.result
-  %span.category Wnioski:
+  .math-description &nbsp;
+  .math{ :style => 'text-align: left;' } W = {qQ \over\displaystyle{ 2\pi l \epsilon_o }} ln({b \over\displaystyle a}) \quad\wedge\quad W = qU \quad\Rightarrow\quad U = {Q \over\displaystyle{ 2\pi l \epsilon_o }} ln({b \over\displaystyle a})
 
-  - if @statistics.student_distribution.nil?
-    Nieznana wartość rozkładu Studenta.
-  - else
-    - if @statistics.equal_hypothesis_is_good?
-      .math{ :style => "text-align: left" } T \in W
-      Wartość znormalizowana należy do przedziału krytycznego. Hipotezę należy odrzucić.
-    - else
-      .math{ :style => "text-align: left" } T \notin W
-      Wartość znormalizowana nie należy do przedziału krytycznego. Brak podstaw do odrzucenia hipotezy.
+  .math-description Z definicji pojemności kondensatora:
+  .math{ :style => 'text-align: left;' } C = {Q \over\displaystyle U} \quad\Rightarrow\quad C = {2 \pi l \epsilon_o \over\displaystyle ln({b \over\displaystyle a})}
 
 .authors
-  %span.category Przygotowali:
-  %span.description Hebda Artur, Michalski Łukasz, Siedlarz Marcin
+  %span.category Autor:
+  %span.description Artur Hebda
