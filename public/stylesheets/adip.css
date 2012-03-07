@@ -16,7 +16,7 @@ sub, sup {
 
 .header {
   margin: 0;
-  padding-bottom: 20px;
+  padding: 20px 0;
   font-size: 14px; }
   .header * {
     font-size: inherit; }

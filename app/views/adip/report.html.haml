@@ -1,28 +1,64 @@
 :css
   #jsMath_button { display: none !important; }
 
-.header
-  %span.category Temat:
-  %span.description Jak obliczyć pojemność kondensatora złożonego z dwóch koncentrycznych rur długości l? Promień wewnętrznej rury: a, zewnętrznej: b.
-
 .solution#math-parent
-  %span.category Rozwiązanie:
+  .header
+    %span.category Równania Maxwella
 
-  .math-description Z prawa Gaussa:
-  .math{ :style => 'text-align: left;' } r \in [a,b) \quad\Rightarrow\quad 2\pi rlE = {Q \over\displaystyle \epsilon_o} \quad\Leftrightarrow\quad E = {Q \over\displaystyle{ 2\pi rl \epsilon_o }}
+  .math{ :style => 'text-align: left;' } \oint{\vec{E}d\vec{S}} = {Q \over \epsilon_o} \quad \Leftrightarrow \quad div \vec{E} = {\varrho \over \epsilon_o}
+  .math-description{ :style => 'margin-top: -10px' }
+    .math{ :style => 'text-align: left; width: 10px; display: inline-block;' } \varrho
+    \- gęstość ładunku
 
-  .math-description Z definicji potencjału i napięcia:
-  .math{ :style => 'text-align: left;' } W = q(V_b - V_a) \quad\wedge\quad U = V_b - V_a \quad\Rightarrow\quad W = qU
+  .math{ :style => 'text-align: left;' } \oint{\vec{B}d\vec{S}} = 0 \quad \Leftrightarrow \quad div \vec{B} = 0
+  .math{ :style => 'text-align: left;' } \oint{\vec{E}d\vec{l}} = - {\partial \Phi_{B} \over \partial t} \quad \Leftrightarrow \quad rot \vec{E} = -{\partial \vec{B} \over \partial t}
+  .math{ :style => 'text-align: left;' } \oint{\vec{B}d\vec{l}} = \mu_o I + \epsilon_o \mu_o {\partial \Phi_{E} \over \partial t} \quad \Leftrightarrow \quad rot \vec{B} = \mu_o \vec{j} + \epsilon_o \mu_o {\partial \vec{E} \over \partial t}
+  .math-description{ :style => 'margin-top: -10px' }
+    .math{ :style => 'text-align: left; width: 10px; display: inline-block;' } \vec{j}
+    \- gęstość prądu
 
-  .math-description Z definicji pracy w polu elektrycznym:
-  .math{ :style => 'text-align: left;' } W = \int^b_a{Eq}dr = q\int^b_a{E}dr = q\int^b_a{Q \over\displaystyle{ 2\pi rl \epsilon_o }}dr = {qQ \over\displaystyle{ 2\pi l \epsilon_o }} \int^b_a{dr \over\displaystyle r} = {qQ \over\displaystyle{ 2\pi l \epsilon_o }} ln({b \over\displaystyle a})
+  .header
+    %span.category Fale elektromagnetyczne
 
-  .math-description &nbsp;
-  .math{ :style => 'text-align: left;' } W = {qQ \over\displaystyle{ 2\pi l \epsilon_o }} ln({b \over\displaystyle a}) \quad\wedge\quad W = qU \quad\Rightarrow\quad U = {Q \over\displaystyle{ 2\pi l \epsilon_o }} ln({b \over\displaystyle a})
+  .math{ :style => 'text-align: left;' } \vec{S} = {1 \over \mu_o} \vec{E} \times \vec{B}
+  .math-description{ :style => 'margin-top: -10px' }
+    .math{ :style => 'text-align: left; width: 10px; display: inline-block;' } \vec{S}
+    \- wektor Poyntinga
 
-  .math-description Z definicji pojemności kondensatora:
-  .math{ :style => 'text-align: left;' } C = {Q \over\displaystyle U} \quad\Rightarrow\quad C = {2 \pi l \epsilon_o \over\displaystyle ln({b \over\displaystyle a})}
+  .math{ :style => 'text-align: left;' } c = {E_o \over B_o} = {\displaystyle {1}\above1pt\displaystyle{\sqrt{\mu_o\epsilon_o}}}
+  .math-description{ :style => 'margin-top: -10px' }
+    .math{ :style => 'text-align: left; width: 15px; display: inline-block;' } E_o
+    \- amplituda drgań wektora E,
+    .math{ :style => 'text-align: left; width: 15px; display: inline-block;' } B_o
+    \- amplituda drgań wektora B
+
+  .header
+    %span.category Przypomnienie z fal mechanicznych
+
+  .math{ :style => 'text-align: left;' } y(x,t) = A \sin{(kx - \omega t)}, \quad k = {2 \pi \over \lambda}, \quad \omega = {2 \pi \over T}, \quad \lambda = vT
+  .math-description
+    v - szybkość rozchodzenia się fali, k - liczba falowa
+    %br
+    Fala rozchodzi się zgodnie ze zwrotem osi x. Gdyby rozchodziła się przeciwnie do zwrotu osi x:
+
+  .math{ :style => 'text-align: left;' } y(x,t) = A \sin{(kx + \omega t)}
+
+  .header
+    %span.category Matematyczne uzupełnienie
+
+  .math{ :style => 'text-align: left;' } div \vec{A} = \nabla \circ \vec{A} = {\partial A_x \over \partial x} + {\partial A_y \over \partial y} + {\partial A_z \over \partial z}
+  .math{ :style => 'text-align: left; margin-top: 60px;' } rot \vec{A} = \nabla \times \vec{A} = \left| \matrix{\vec{i} & \vec{j} & \vec{k} \cr {\partial \over \partial x} & {\partial \over \partial y} & {\partial \over \partial z} \cr A_x & A_y & A_z} \right| = \vec{i}({\partial A_z \over \partial y} - {\partial A_y \over \partial z}) + \vec{j}({\partial A_x \over \partial z} - {\partial A_z \over \partial x}) + \vec{k}({\partial A_y \over \partial x} - {\partial A_x \over \partial y})
+  .math-description
+    .math{ :style => 'text-align: left; width: 10px; display: inline-block;' } \nabla
+    \- operator nabla,
+    .math{ :style => 'text-align: left; width: 25px; display: inline-block;' } div \vec{A}
+    \- dywergencja,
+    .math{ :style => 'text-align: left; width: 25px; display: inline-block;' } rot \vec{A}
+    \- rotacja
 
 .authors
   %span.category Autor:
   %span.description Artur Hebda
+  %br
+  %span.category Na podstawie:
+  %span.description http://pub.jcw.pl/tmp/fiza.pdf
