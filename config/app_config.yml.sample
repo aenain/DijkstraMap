@@ -1,24 +1,26 @@
---- 
-dijkstra: 
-  search: 
-    dir: /Users/arturhebda/Desktop
-    file: Dijkstra.debug
-  result: 
-    path: /Users/arturhebda/Desktop/path.xml
-osm: 
-  source: 
-    path: /Users/arturhebda/Downloads/map.osm
-  image: 
-    path: 
+---
+dijkstra:
+  search:
+    dir: <%= Rails.root.join('Dijkstra') %>
+    file: Dijkstra
+  result:
+    path: <%= Rails.root.join('tmp', 'path.xml') %>
+osm:
+  source:
+    path: <%= Rails.root.join('public', 'map.osm') %>
+  image:
+    path:
       absolute: <%= Rails.root.join('public', 'images', 'map.svg') %>
       relative: <%= File.join('/', 'images', 'map.svg') %>
-    dimensions: 
+    dimensions:
       width: 1049
       height: 858
-  bounds: 
-    min: 
+  bounds:
+    min:
       latitude: 50.05655
       longitude: 19.90017
-    max: 
+    max:
       latitude: 50.07319
       longitude: 19.93184
+wkhtmltopdf:
+  path: PATH_TO_WKHTMLTOPDF_BINARY
