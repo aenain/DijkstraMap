@@ -2,13 +2,14 @@ DijkstraMap
 
 0. Basic Information
   This application is written in Rails 3.0.7 on Ruby 1.9.2 using TextMate (*.tmproj is included).
-  Dijkstra (search engine) was written in C++ and compiled on Intel-based 64-bit Mac OS X using Xcode 4 (g++).
-  That's why there is no Makefile.
+  Dijkstra (search engine) was written in C++ and compiled on Intel-based 64-bit Mac OS X using Xcode 4 (g++) - you can find in my repository:
+  https://github.com/aenain/Dijkstra and compile on your own.
+
   Application and search engine use exported map (as *.osm and *.svg) from www.openstreetmap.org
 
 1. Requirements
   This application requires also four other things to run properly (except gems listed in Bundler):
-    a. Dijkstra binary file - program which finds the shortest path between given nodes and exports results to xml file
+    a. Dijkstra binary file - program which finds the shortest path between given nodes and exports results to xml file (it's included but maybe you will have to compile it on your own)
     b. map.osm - exported map from www.openstreetmap.org (downloading it with crawler is forbidden by license)
     c. map.svg - exported map from www.openstreetmap.org (downloading it with crawler is forbidden by license) (notice that when downloading map.osm and map.svg files in Google Chrome download status bar on bottom changed bounds of map!)
     d. MySQL Server (on Mac OS X it can be easily installed with ports: sudo port install mysql5)
